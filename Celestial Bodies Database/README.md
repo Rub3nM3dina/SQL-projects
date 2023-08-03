@@ -3,7 +3,7 @@
 In this project, we will build a SQLite relational database with 5 related tables following these requirements:
 
 - Each table should have a primary key.
-- Each *primary key* should automatically increment. (Because I am working on SQLite, I will have to do it manually. But if you use the commands on SQL Server o PostgresSQL, it will automatically increment)
+- Each *primary key* should automatically increment. (Because I am working in SQLite, I will have to manually increment the primary key column. But if you use the commands in SQL Server or PostgresSQL, it will automatically increment)
 - Each table should have a name column.
 - You should use the **INT** data type for at least two columns that are not a primary key or foreign key.
 - You should use the **NUMERIC** data type at least once.
