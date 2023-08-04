@@ -1,6 +1,6 @@
 # Universe database
 
-In this project, we will build a SQLite relational database with 5 related tables following these requirements:
+This project involves designing and building a SQLite relational database to model astronomical objects and their relationships. The following requirements must be followed in designing the 5 related tables:
 
 - Each table should have a primary key.
 - Each *primary key* should automatically increment. (Because I am working in SQLite, I will have to manually increment the primary key column. But if you use the commands in SQL Server or PostgresSQL, it will automatically increment)
@@ -15,3 +15,6 @@ In this project, we will build a SQLite relational database with 5 related table
 - At least 2 columns per table should not accept **NULL** values.
 - At least one column from each table should be required to be **UNIQUE**.
 - All columns named *name* should be of type **VARCHAR**.
+
+## Solution
+The SQL code and documentation for this database project can be found in the Universe.md file.
