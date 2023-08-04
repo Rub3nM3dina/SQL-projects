@@ -1,4 +1,4 @@
-#Universe database
+# Universe database
 
 In this project, we will build a SQLite relational database with 5 related tables following these requirements:
 
