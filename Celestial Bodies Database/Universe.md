@@ -5,7 +5,7 @@ c\ universe
 ```
 ### We create our first table, the galaxy table
 ```
-CREATE TABLE galaxy(galaxy_id SERIAL PRIMARY KEY);
+CREATE TABLE galaxy(galaxy_id SERIAL UNIQUE NOT NULL PRIMARY KEY);
 ```
 ### Then we start to create the rest of the attributes
 ```
@@ -38,4 +38,48 @@ INSERT INTO star(star_id, galaxy_id, name, star_age_in_million_years, surface_te
 INSERT INTO star(star_id, galaxy_id, name, star_age_in_million_years, surface_temperature) VALUES(5,2,'UY Scuti',10,5000), (6,2,'VY Canis Majoris',17,3490), (7,2,'RW Cephei',4,3500),(8,2,'The Sun',4600,5778);
 INSERT INTO star(star_id, galaxy_id, name, star_age_in_million_years, surface_temperature) VALUES(9,3,'Alkaid', 300, 10000), (10,3,'Mizar', 450, 10200), (11,4,'Kronos Prime',5000,5200), (12,4,'Praxis Prime',1500,6300);
 INSERT INTO star(star_id, galaxy_id, name, star_age_in_million_years, surface_temperature) VALUES(13,5,'Coruscant Prime', 6000,5500), (14,5,'Alderaan Star',3500,5800), (15,6,'Widow',100, 7900), (16,6,'Tasale',400,8100), (17,6,'Aralakh',7000,4800);
+```
+### Now we are going to create the planet table and its attributes
+```
+CREATE TABLE planet(planet_id SERIAL NOT NULL UNIQUE PRIMARY KEY);
+ALTER TABLE planet ADD COLUMN star_id INT NOT NULL REFERENCES star(star_id);
+ALTER TABLE planet ADD COLUMN name VACHAR(15) NOT NULL;
+ALTER TABLE planet ADD COLUMN orbit_period_in_days NUMERIC(7,2);
+ALTER TABLE planet ADD COLUMN is_real BOOLEAN NOT NULL;
+```
+### Let's star storing data
+Before inserting data into the planet table, I needed to look up the star_id to use as the foreign key reference. To do this, I queried the star table filtering on the name column to retrieve the matching star_id.
+Doing this lookup allowed me to properly populate the foreign key reference in the planet table.
+```
+SELECT star_id, name FROM star WHERE name='The Sun';
+```
+<em>Image: Query result showing star_id for The Sun.</em>
+
+The query returned the following result showing the star_id for The Sun (image below):
+
+<figcaption>Query result showing star_id for The Sun</figcaption>
+
+With the star_id looked up, I could then insert rows into the planet table, specifying the star_id foreign key value each time:
+
+```
+INSERT INTO planet(planet_id, star_id, name, orbit_period_in_days, is_real) VALUES(1,8,'Mercury',87.97, TRUE);
+INSERT INTO planet(planet_id, star_id, name, orbit_period_in_days, is_real) VALUES(2,8,'Venus',224.7,TRUE), (3,8,'Earth',365.25, TRUE), (4,8,'Mars',686.98,TRUE),(5,8,'Jupiter',4333,TRUE), (6,8,'Saturn',10759,TRUE), (7,8,'Uranus',30633,TRUE), (8,8,'Neptune',60182,TRUE);
+```
+I followed the same steps to find the star_id values for the other stars needed for populating planet data, such as Kronos Prime, Praxis Prime, Coruscant Prime, Alderaan Star, Widow, Tasale, and Aralakh.
+1. Querying the star table
+2. Filtering by the star name
+3. Retrieving the matching star_id
+This lookup was repeated as needed before inserting planets to capture the correct foreign key relationship in the schema.
+a) star_id for Kronos Prime
+```
+SELECT star_id, name FROM star WHERE name='Kronos Prime';
+```
+<em>Image: Query result showing star_id for Kronos Prime.</em>
+```
+INSERT INTO planet(planet_id, star_id, name, orbit_period_in_days, is_real) VALUES(9,11,'Kronos',NULL,FALSE);
+```
+
+```
+INSERT INTO planet(planet_id, star_id, name, orbit_period_in_days, is_real) VALUES(9,11,'Kronos',NULL,FALSE), (10,12,'Praxis',NULL,FALSE),
+(11,13,'Coruscant',368,FALSE), (12,14,'Alderaan',364,FALSE), (13,15,'Citadel',NULL,FALSE), (14,16,'Illium',254,FALSE), (15,17,'Tuchanka',482,FALSE);
 ```
