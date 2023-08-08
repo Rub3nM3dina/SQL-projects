@@ -20,4 +20,4 @@ This project involves designing and building a SQLite relational database to mod
 The full documentation and code for this project is separated into two files:
 - Contains detailed explanations of the database design, schema, queries, and usage instructions.
 - SQL script with all table definitions, constraints, lookups, inserts, and comments.
-- Please refere to UNIVERSE-DOC.md for the complete narrative documentation for this database project. UNIVERSE-CODE.sql contains the full SQL implementation and can be used to recreate the database.
+Please refere to UNIVERSE-DOC.md for the complete narrative documentation for this database project. UNIVERSE-CODE.sql contains the full SQL implementation and can be used to recreate the database.
