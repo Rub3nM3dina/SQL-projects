@@ -37,8 +37,7 @@ ALTER TABLE planet ADD COLUMN name VACHAR(15) NOT NULL;
 ALTER TABLE planet ADD COLUMN orbit_period_in_days NUMERIC(7,2);
 ALTER TABLE planet ADD COLUMN is_real BOOLEAN NOT NULL;
 
--- Query to get the star_id 
-SELECT star_id, name FROM star WHERE name='The Sun';
+SELECT star_id, name FROM star WHERE name='The Sun'; --Query to retrieve 
 SELECT star_id, name FROM star WHERE name='The Sun';
 SELECT star_id, name FROM star WHERE name='The Sun';
 SELECT star_id, name FROM star WHERE name='The Sun';
