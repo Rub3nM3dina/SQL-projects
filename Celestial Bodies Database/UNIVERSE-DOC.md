@@ -70,16 +70,3 @@ I followed the same steps to find the star_id values for the other stars needed 
 2. Filtering by the star name
 3. Retrieving the matching star_id
 This lookup was repeated as needed before inserting planets to capture the correct foreign key relationship in the schema.
-a) star_id for Kronos Prime
-```
-SELECT star_id, name FROM star WHERE name='Kronos Prime';
-```
-<em>Image: Query result showing star_id for Kronos Prime.</em>
-```
-INSERT INTO planet(planet_id, star_id, name, orbit_period_in_days, is_real) VALUES(9,11,'Kronos',NULL,FALSE);
-```
-
-```
-INSERT INTO planet(planet_id, star_id, name, orbit_period_in_days, is_real) VALUES(9,11,'Kronos',NULL,FALSE), (10,12,'Praxis',NULL,FALSE),
-(11,13,'Coruscant',368,FALSE), (12,14,'Alderaan',364,FALSE), (13,15,'Citadel',NULL,FALSE), (14,16,'Illium',254,FALSE), (15,17,'Tuchanka',482,FALSE);
-```
